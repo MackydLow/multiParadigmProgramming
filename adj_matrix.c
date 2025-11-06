@@ -52,16 +52,21 @@ AdjacencyMatrix* createAdjacencyMatrix(int defaultEdgeValue)
     // a void cast to prevent 'unused variable warning'
     // remove the following line of code when you have 
     // implemented the function yourself
-    (void)defaultEdgeValue;
 
     if (defaultEdgeValue == NULL) {
-        return INVALID_INPUT_PARAMETER;
+        return NULL;
     }
 
-    int matrix = (defaultEdgeValue)myMalloc(sizeof(defaultEdgeValue));
+    AdjacencyMatrix *matrix = myMalloc(sizeof(defaultEdgeValue));
 
-    // returning NOT_IMPLEMENTED until your own implementation is provided
-    return NULL;
+    for (int x = 0; x < NUMBER_OF_VERTICES; x++)
+    {
+        for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
+            matrix->matrix[x][y] = defaultEdgeValue;
+        }
+    }
+
+    return matrix;
 }
 
 /**
@@ -80,6 +85,12 @@ int addEdge(AdjacencyMatrix *pMatrix, int src, int dest, int weight)
     (void)src;
     (void)dest;
     (void)weight;
+
+    if (pMatrix == NULL) {
+        return NULL
+    }
+
+    
 
     // returning NOT_IMPLEMENTED until your own implementation provided
     return NOT_IMPLEMENTED;
