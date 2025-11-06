@@ -112,12 +112,35 @@ int addEdges(AdjacencyMatrix *pMatrix, Edge edges[], int edgeNum)
     // void casts to prevent 'unused variable warning'
     // remove the following lines of code when you have 
     // implemented the function yourself
-    (void)pMatrix;
-    (void)edges;
-    (void)edgeNum;
+    if (pMatrix == NULL) {
+        return INVALID_INPUT_PARAMETER;
+    }
+
+    if ((edges == NULL) || (edgeNum < 0)) {
+        return INVALID_INPUT_PARAMETER;
+    }
+
+    int successfulEdge = 0;
+
+    for (int i = 0; i < edgeNum; i++) {
+        if ((edges->src < 0) || (edges->dest < 0)) {
+            return INVALID_INPUT_PARAMETER;
+        }
+
+        pMatrix->matrix[edges->src][edges->dest] = edges->weight;
+        successfulEdge +=1;
+    }
+
+    if (successfulEdge = edgeNum) {
+        return SUCCESS
+    } else if (successfulEdge = 0) {
+        return INVALID_INPUT_PARAMETE
+    } else {
+        return PARTIAL_SUCCESS
+    }
 
     // returning NOT_IMPLEMENTED until your own implementation provided
-    return NOT_IMPLEMENTED;
+    
 }
 
 /**
