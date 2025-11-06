@@ -131,12 +131,12 @@ int addEdges(AdjacencyMatrix *pMatrix, Edge edges[], int edgeNum)
         successfulEdge +=1;
     }
 
-    if (successfulEdge = edgeNum) {
-        return SUCCESS
-    } else if (successfulEdge = 0) {
-        return INVALID_INPUT_PARAMETE
+    if (successfulEdge == edgeNum) {
+        return SUCCESS;
+    } else if (successfulEdge == 0) {
+        return INVALID_INPUT_PARAMETER;
     } else {
-        return PARTIAL_SUCCESS
+        return PARTIAL_SUCCESS;
     }
 
     // returning NOT_IMPLEMENTED until your own implementation provided
