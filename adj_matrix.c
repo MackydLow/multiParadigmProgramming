@@ -53,7 +53,7 @@ AdjacencyMatrix* createAdjacencyMatrix(int defaultEdgeValue)
     // remove the following line of code when you have 
     // implemented the function yourself
 
-    if (defaultEdgeValue == NULL) {
+    if (defaultEdgeValue == 0) {
         return NULL;
     }
 
@@ -179,8 +179,26 @@ int loadMatrixFromFile(AdjacencyMatrix *pMatrix, char filename[])
     (void)pMatrix;
     (void)filename;
 
+    if ((pMatrix == NULL) || (filename == NULL)) {
+        return INVALID_INPUT_PARAMETER;
+    }
+
+    FILE *fp;
+    fp = fopen(filename, "r");
+    if (fp != NULL) {
+        for (int x = 0; x < NUMBER_OF_VERTICES; x++) {
+            for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
+                fscanf (fp, "%d", &pMatrix->matrix[x][y]);
+                return SUCCESS;
+            }
+        }
+    }
+
+    fclose(fp);
+
+
     // returning NOT_IMPLEMENTED until your own implementation provided
-    return NOT_IMPLEMENTED;
+    return INVALID_INPUT_PARAMETER;
 }
 
 
