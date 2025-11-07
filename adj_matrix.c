@@ -189,16 +189,11 @@ int loadMatrixFromFile(AdjacencyMatrix *pMatrix, char filename[])
         for (int x = 0; x < NUMBER_OF_VERTICES; x++) {
             for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
                 fscanf (fp, "%d", &pMatrix->matrix[x][y]);
-                return SUCCESS;
             }
         }
     }
-
+    return SUCCESS;
     fclose(fp);
-
-
-    // returning NOT_IMPLEMENTED until your own implementation provided
-    return INVALID_INPUT_PARAMETER;
 }
 
 
@@ -206,13 +201,50 @@ int loadMatrixFromFile(AdjacencyMatrix *pMatrix, char filename[])
 
 int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traversalOutput[])
 { 
-    // void casts to prevent 'unused variable warning'
-    // remove the following lines of code when you have 
-    // implemented the function yourself
-    (void)pMatrix;
-    (void)startingNode;
-    (void)traversalOutput;
 
-    // returning NOT_IMPLEMENTED until your own implementation provided
-    return NOT_IMPLEMENTED;
+    if (pMatrix == NULL) {
+        return INVALID_INPUT_PARAMETER;
+    }
+
+    int visited[NUMBER_OF_VERTICES];
+    for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
+        visited[i] = 0;
+    }
+
+    int foundUnvisited;
+
+    int stack[NUMBER_OF_VERTICES];
+    int top = -1;
+
+    int currentNode = startingNode;
+    visited[startingNode] = 1;
+
+    int travIndex = 1;
+
+    while (true){
+
+        foundUnvisited = false;
+
+        for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
+            if (pMatrix->matrix[currentNode][i] == 1 && visited[i] == 0) {
+
+                stack[++top] = currentNode;
+                currentNode = i;
+                visited[currentNode] = 1;
+                traversalOutput[travIndex] = currentNode;
+                travIndex++;
+                foundUnvisited = true;
+            }
+        }
+
+        if (foundUnvisited == false) {
+            if (top >= 0) {
+                currentNode = stack[top--];
+            } else {
+                break;
+            }
+        }
+    }
+
+    return SUCCESS;
 }
