@@ -57,9 +57,30 @@ int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int st
     (void)pTable;
     (void)startNode;
 
-    // returning NOT_IMPLEMENTED until your own implementation provided
-    return NOT_IMPLEMENTED;
-}
+    for (int x = 0; x < NUMBER_OF_VERTICES; x++){
+        pTable->table[x].distance = 999999;
+    }
+
+    if ((pMatrix == NULL) || (pTable == NULL)) {
+        return INVALID_INPUT_PARAMETER;
+    }
+
+    int current = startNode;
+    pTable->table[startNode].distance = 0;
+
+    for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
+        if (pMatrix->matrix[current][i] > 0) {
+            int dist = pTable->table[current].distance + pMatrix->matrix[current][i];
+            if (dist < pTable->table[i].distance)
+            {
+                pTable->table[i].distance = dist;
+                pTable->table[i].predecessor = current;
+            }
+        }
+
+        return SUCCESS
+    }
+
 
 
 /**
