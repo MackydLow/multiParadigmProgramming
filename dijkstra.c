@@ -75,14 +75,14 @@ int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int st
                 }
             }
         }
-    }
-    int minDistance = 99999;
-    for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
+        int minDistance = 99999;
+        for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
         if ((pTable->table[y].distance < minDistance) && (pTable->table[y].visited == false)) {
              minDistance = pTable->table[y].distance;
-             pTable->table[current].visited = true;
              current = y;
         }
+    }
+    pTable->table[current].visited = true;
     }
     return SUCCESS;
 }
@@ -107,14 +107,31 @@ int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int st
  */
 int getShortestPathFrom(DijkstraTable *pTable, int nodeFrom, int nodeTo, int pathFound[])
 {
-    // void casts to prevent 'unused variable warning'
-    // remove the following lines of code when you have 
-    // implemented the function yourself
-    (void)pTable;
-    (void)nodeFrom;
-    (void)nodeTo;
-    (void)pathFound;
+    if ((pTable == NULL) || (pathFound == NULL)) {
+        return INVALID_INPUT_PARAMETER; 
+    }
 
+    if (nodeFrom < 0 || nodeTo < 0) {
+        return INVALID_INPUT_PARAMETER;
+    }
+    
+    int current = nodeTo;
+    int index = 0;
+
+    while (true) {
+        pathFound[index] = current;
+        index = index + 1;
+
+        if (current == nodeFrom) {
+            return SUCCESS;
+        }
+
+        if (pTable->table[current].predecessor == -1) {
+            return INVALID_INPUT_PARAMETER;
+        }
+
+        current = pTable->table[current].predecessor;
+    }
     // returning NOT_IMPLEMENTED until your own implementation provided
-    return NOT_IMPLEMENTED;
+    return SUCCESS;
 }
