@@ -234,6 +234,7 @@ int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traver
                 traversalOutput[travIndex] = currentNode;
                 travIndex++;
                 foundUnvisited = true;
+                break;
             }
         }
 
