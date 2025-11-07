@@ -50,6 +50,7 @@
  */
 int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int startNode)
 {
+    //set up Dijkstra Table
     for (int x = 0; x < NUMBER_OF_VERTICES; x++){
         pTable->table[x].distance = 999999;
         pTable->table[x].visited = false;
@@ -57,13 +58,16 @@ int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int st
 
     }
 
+    //check tables are null
     if ((pMatrix == NULL) || (pTable == NULL)) {
         return INVALID_INPUT_PARAMETER;
     }
 
+    //set up. variables
     int current = startNode;
     pTable->table[startNode].distance = 0;
 
+    //loop for nodes 
     for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
         if (pMatrix->matrix[current][i] > 0) {
             int dist = pTable->table[current].distance + pMatrix->matrix[current][i];
@@ -75,14 +79,15 @@ int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int st
                 }
             }
         }
+
+        //change current node for new loop
         int minDistance = 99999;
         for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
         if ((pTable->table[y].distance < minDistance) && (pTable->table[y].visited == false)) {
              minDistance = pTable->table[y].distance;
              current = y;
-        }
-    }
-    pTable->table[current].visited = true;
+        } 
+        
     }
     return SUCCESS;
 }
@@ -107,17 +112,21 @@ int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int st
  */
 int getShortestPathFrom(DijkstraTable *pTable, int nodeFrom, int nodeTo, int pathFound[])
 {
+    //check tables and not null
     if ((pTable == NULL) || (pathFound == NULL)) {
         return INVALID_INPUT_PARAMETER; 
     }
 
+    //check nodes are valid 
     if (nodeFrom < 0 || nodeTo < 0) {
         return INVALID_INPUT_PARAMETER;
     }
     
+    //set up variables
     int current = nodeTo;
     int index = 0;
 
+    //loop through table till shortest found 
     while (true) {
         pathFound[index] = current;
         index = index + 1;
@@ -130,6 +139,7 @@ int getShortestPathFrom(DijkstraTable *pTable, int nodeFrom, int nodeTo, int pat
             return INVALID_INPUT_PARAMETER;
         }
 
+        //set up predecessor
         current = pTable->table[current].predecessor;
     }
     // returning NOT_IMPLEMENTED until your own implementation provided

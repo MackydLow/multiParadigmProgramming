@@ -53,12 +53,15 @@ AdjacencyMatrix* createAdjacencyMatrix(int defaultEdgeValue)
     // remove the following line of code when you have 
     // implemented the function yourself
 
+    //validate default edge 
     if (defaultEdgeValue == 0) {
         return NULL;
     }
 
+    //make space using malloc 
     AdjacencyMatrix *matrix = myMalloc(sizeof(defaultEdgeValue));
 
+    //loop for matrix
     for (int x = 0; x < NUMBER_OF_VERTICES; x++)
     {
         for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
@@ -78,14 +81,17 @@ AdjacencyMatrix* createAdjacencyMatrix(int defaultEdgeValue)
  */
 int addEdge(AdjacencyMatrix *pMatrix, int src, int dest, int weight)
 {
+    //validate matrix
     if (pMatrix == NULL) {
         return INVALID_INPUT_PARAMETER;
     }
 
+    //validate inputs 
     if ((src < 0) || (dest < 0)) {
         return INVALID_INPUT_PARAMETER;
     }
 
+    //add edge to matrix 
     pMatrix->matrix[src][dest] = weight;
 
     return SUCCESS;
@@ -112,6 +118,8 @@ int addEdges(AdjacencyMatrix *pMatrix, Edge edges[], int edgeNum)
     // void casts to prevent 'unused variable warning'
     // remove the following lines of code when you have 
     // implemented the function yourself
+
+    //validate inputs 
     if ((edges == NULL) || (edgeNum < 0)) {
         return INVALID_INPUT_PARAMETER;
     }
@@ -120,17 +128,21 @@ int addEdges(AdjacencyMatrix *pMatrix, Edge edges[], int edgeNum)
         return INVALID_INPUT_PARAMETER;
     }
 
+    //set up variable
     int sucEdge = 0;
 
+    //more input validation checking inputs are in line 
     for (int x = 0; x < edgeNum; x++) {
         if ((edges->src < 0) || (edges->dest < 0)){
             return INVALID_INPUT_PARAMETER;
         }
 
+        //add edge to the matrix 
         pMatrix->matrix[edges[x].src][edges[x].dest] = edges[x].weight;
         sucEdge +=1;
     }
 
+    //check how many of the edges have been added 
     if (sucEdge == edgeNum) {
         return SUCCESS;
     } else if (sucEdge == 0) {
@@ -138,9 +150,6 @@ int addEdges(AdjacencyMatrix *pMatrix, Edge edges[], int edgeNum)
     } else {
         return PARTIAL_SUCCESS;
     }
-
-    // returning NOT_IMPLEMENTED until your own implementation provided
-    
 }
 
 /**
@@ -176,24 +185,25 @@ int loadMatrixFromFile(AdjacencyMatrix *pMatrix, char filename[])
     // void casts to prevent 'unused variable warning'
     // remove the following lines of code when you have 
     // implemented the function yourself
-    (void)pMatrix;
-    (void)filename;
 
+    //validate inputs 
     if ((pMatrix == NULL) || (filename == NULL)) {
         return INVALID_INPUT_PARAMETER;
     }
 
+    //open file and retrieve data 
     FILE *fp;
     fp = fopen(filename, "r");
     if (fp != NULL) {
+        //cycle trhough data 
         for (int x = 0; x < NUMBER_OF_VERTICES; x++) {
             for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
                 fscanf (fp, "%d", &pMatrix->matrix[x][y]);
             }
         }
     }
-    return SUCCESS;
     fclose(fp);
+    return SUCCESS;
 }
 
 
@@ -201,11 +211,12 @@ int loadMatrixFromFile(AdjacencyMatrix *pMatrix, char filename[])
 
 int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traversalOutput[])
 { 
-
+    //validate inputs 
     if (pMatrix == NULL) {
         return INVALID_INPUT_PARAMETER;
     }
 
+    //set up visited 
     int visited[NUMBER_OF_VERTICES];
     for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
         visited[i] = 0;
@@ -213,15 +224,19 @@ int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traver
 
     int foundUnvisited;
 
+    //set up stack from track back
     int stack[NUMBER_OF_VERTICES];
     int top = -1;
 
+    //start deep tarversal with setting up first visisted
     int currentNode = startingNode;
     visited[startingNode] = 1;
 
+    //set up first one in the traversal
     traversalOutput[0] = startingNode;
     int travIndex = 1;
 
+    //loop through doing the deep traversal 
     while (true){
 
         foundUnvisited = 0;
@@ -229,6 +244,7 @@ int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traver
         for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
             if (pMatrix->matrix[currentNode][i] == 1 && visited[i] == 0) {
 
+                //move stack compared to visited
                 stack[++top] = currentNode;
                 currentNode = i;
                 visited[currentNode] = 1;
@@ -239,6 +255,7 @@ int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traver
             }
         }
 
+        //pop top of stack 
         if (foundUnvisited == 0) {
             if (top >= 0) {
                 currentNode = stack[top--];
