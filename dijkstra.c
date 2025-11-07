@@ -50,15 +50,11 @@
  */
 int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int startNode)
 {
-    // void casts to prevent 'unused variable warning'
-    // remove the following lines of code when you have 
-    // implemented the function yourself
-    (void)pMatrix;
-    (void)pTable;
-    (void)startNode;
-
     for (int x = 0; x < NUMBER_OF_VERTICES; x++){
         pTable->table[x].distance = 999999;
+        pTable->table[x].visited = false;
+        pTable->table[x].predecessor = 1;
+
     }
 
     if ((pMatrix == NULL) || (pTable == NULL)) {
@@ -71,16 +67,25 @@ int runDijsktraAlgorithm(AdjacencyMatrix *pMatrix, DijkstraTable *pTable, int st
     for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
         if (pMatrix->matrix[current][i] > 0) {
             int dist = pTable->table[current].distance + pMatrix->matrix[current][i];
-            if (dist < pTable->table[i].distance)
-            {
+            if (pTable->table[i].visited == false) {
+                if (dist < pTable->table[i].distance){
                 pTable->table[i].distance = dist;
                 pTable->table[i].predecessor = current;
+                pTable->table[i].visited = true;
+                }
             }
         }
-
-        return SUCCESS
     }
-
+    int minDistance = 99999;
+    for (int y = 0; y < NUMBER_OF_VERTICES; y++) {
+        if ((pTable->table[y].distance < minDistance) && (pTable->table[y].visited == false)) {
+             minDistance = pTable->table[y].distance;
+             pTable->table[current].visited = true;
+             current = y;
+        }
+    }
+    return SUCCESS;
+}
 
 
 /**
