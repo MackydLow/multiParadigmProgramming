@@ -112,28 +112,28 @@ int addEdges(AdjacencyMatrix *pMatrix, Edge edges[], int edgeNum)
     // void casts to prevent 'unused variable warning'
     // remove the following lines of code when you have 
     // implemented the function yourself
-    if (pMatrix == NULL) {
-        return INVALID_INPUT_PARAMETER;
-    }
-
     if ((edges == NULL) || (edgeNum < 0)) {
         return INVALID_INPUT_PARAMETER;
     }
 
-    int successfulEdge = 0;
+    if (pMatrix == NULL) {
+        return INVALID_INPUT_PARAMETER;
+    }
 
-    for (int i = 0; i < edgeNum; i++) {
-        if ((edges->src < 0) || (edges->dest < 0)) {
+    int sucEdge = 0;
+
+    for (int x = 0; x < edgeNum; x++) {
+        if ((edges->src < 0) || (edges->dest < 0)){
             return INVALID_INPUT_PARAMETER;
         }
 
-        pMatrix->matrix[edges->src][edges->dest] = edges->weight;
-        successfulEdge +=1;
+        pMatrix->matrix[edges[x].src][edges[x].dest] = edges[x].weight;
+        sucEdge +=1;
     }
 
-    if (successfulEdge == edgeNum) {
+    if (sucEdge == edgeNum) {
         return SUCCESS;
-    } else if (successfulEdge == 0) {
+    } else if (sucEdge == 0) {
         return INVALID_INPUT_PARAMETER;
     } else {
         return PARTIAL_SUCCESS;
@@ -219,11 +219,12 @@ int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traver
     int currentNode = startingNode;
     visited[startingNode] = 1;
 
+    traversalOutput[0] = startingNode;
     int travIndex = 1;
 
     while (true){
 
-        foundUnvisited = false;
+        foundUnvisited = 0;
 
         for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
             if (pMatrix->matrix[currentNode][i] == 1 && visited[i] == 0) {
@@ -233,12 +234,12 @@ int doDepthFirstTraversal(AdjacencyMatrix *pMatrix, int startingNode, int traver
                 visited[currentNode] = 1;
                 traversalOutput[travIndex] = currentNode;
                 travIndex++;
-                foundUnvisited = true;
+                foundUnvisited = 1;
                 break;
             }
         }
 
-        if (foundUnvisited == false) {
+        if (foundUnvisited == 0) {
             if (top >= 0) {
                 currentNode = stack[top--];
             } else {
