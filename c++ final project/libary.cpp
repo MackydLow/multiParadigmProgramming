@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <iostream
+#include <iostream>
 #include "book.h"
 #include "member.h"
 using namespace std;
@@ -32,7 +32,7 @@ void Libary::addBook() {
     }
 
     if (check > 0) {
-        cout << "id invalid re enter"
+        cout << "id invalid re enter" << endl;
         cout << "Enter the new books bookID: " << endl;
         cin >> id;
     }
@@ -51,7 +51,7 @@ void Libary::addBook() {
 
     Book newBook(id, t, a, g, pc, true);
 
-    books.[books.size()] = newBook;
+    books[books.size()] = newBook;
 }
 
 void Libary::removeBook() {
@@ -100,9 +100,9 @@ void Libary::displayAvliableBook() {
     }
 }
 
-void Libary::addMember() {
+void Member::addMember() {
     string n, id;
-
+    int check;
     cout << "Enter the Member ID: " << endl;
     cin >> id;
 
@@ -141,18 +141,19 @@ void Libary::removeMember() {
 
 void Libary::displayMembers() {
     for (size_t i = 0; i < members.size(); i++) {
-        cout << members[i] << endl;
+        cout << members[i].displayMemb() << endl;
     }
 }
 
 void Libary::borrowBook(){
     string bookBorID;
+    Book bookToBor;
     cout << "Enter book ID of book to be borrowed: " << endl;
     cin >> bookBorID;
 
     for (size_t i = 0; i < books.size(); i++) {
         if (books[i].getBookID() == bookBorID) {
-            Book bookToBor = books[i]
+            bookToBor = books[i];
         }
     }
 
@@ -270,3 +271,5 @@ void saveMembersToFile() {
 
     writer.close();
 }
+
+cout << mem

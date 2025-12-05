@@ -19,7 +19,7 @@ class Member{
         void borrowBook(Book &book);
         void returnBook(Book &book);
 
-        Member(string newMemberID, string newName)
-        void saveMember(ofstream &writer)
+        Member(string newMemberID, string newName);
+        void saveMember(ofstream &writer);
 };
 #endif

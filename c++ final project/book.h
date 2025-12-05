@@ -31,10 +31,10 @@ class Book {
         bool getAvaliability();
         void setAvaliability(bool newAvaliability);
 
-        Book(int newBookID, string newTitle, string newAuthor, string newGenre, int newPageCount, bool newAvaliability);
+        Book(string newBookID, string newTitle, string newAuthor, string newGenre, int newPageCount, bool newAvaliability);
 
         void displayBookInfo();
 
-        void saveBook(ofstream &writer)
+        void saveBook(ofstream &writer);
 };
 #endif

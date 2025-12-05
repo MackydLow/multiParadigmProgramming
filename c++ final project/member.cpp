@@ -51,6 +51,10 @@ void Member::saveMember(ofstream &writer) const {
 
 }
 
+void Member::displayMemb()
+    cout << "Member ID: " << memberID << endl;
+    cout << "Name: " << name << endl;
+    cout << " " << endl;
 }
 
 
