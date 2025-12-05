@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#ifndef BOOK_H
+#define BOOK_H
 using namespace std;
 
 class Book {
