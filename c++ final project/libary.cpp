@@ -6,6 +6,12 @@ using namespace std;
 
 class Libary {
     private:
-        Book book;
-        Member member;
+        book Books[];
+        member members[]
+    
+}
+
+void Libary::addBook() {
+    book newBook;
+    
 }

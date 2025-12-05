@@ -30,6 +30,8 @@ class Book {
         void setAvaliability(bool newAvaliability);
 
         Book(int newBookID, string newTitle, string newAuthor, int newGenre, int newPageCount, bool newAvaliability);
+
+        void displayBookInfo();
 };
 //getters
 int Book::getBookID(){
@@ -91,3 +93,13 @@ Book::Book(int newBookID, string newTitle, string newAuthor, int newGenre, int n
     pageCount = newPageCount;
     avaliable = newAvaliability;
 };
+
+//print book
+void Book::displayBookInfo() {
+    cout << "Book ID: " << bookID << endl;
+    cout << "Title: " << title << endl;
+    cout << "Author: " << author << endl;
+    cout << "Genre: " << genre << endl;
+    cout << "Page Count: " << pageCount << endl;
+    cout << "Avaliability: " << avaliable << endl;
+}
