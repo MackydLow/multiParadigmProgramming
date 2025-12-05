@@ -74,10 +74,4 @@ void Book::displayBookInfo() {
     cout << "Avaliability: " << avaliable << endl;
 }
 
-void Book::saveBook(ofstream &writer) const {
-    writer << id << ","
-    << title << ","
-    << author << ","
-    << genre << ","
-    << endl;
-}
+

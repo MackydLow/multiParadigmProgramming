@@ -183,9 +183,10 @@ void Libary::returnBook() {
 }
 
 void Libary::loadBooks(){
-    ifstream reader("books.txt");
 
-    if (!reader) {
+    ifstream file("books.txt");
+
+    if (!file) {
         cout << "Error opening input file" << endl;
         return;
     }
@@ -216,9 +217,9 @@ void Libary::loadBooks(){
 void Libary::loadMembers() {
     ifstream file("members.txt");
 
-    if (!reader) {
+    if (!file) {
         cout << "Error opening input file" << endl;
-        return 1;
+        return;
     }
 
     string line;
@@ -248,7 +249,7 @@ void saveBooksToFile() {
     }
 
     for (const auto &b : books) {
-        b.saveToFile(writer);
+        b.saveBook(writer);
     }
 
     writer.close();
@@ -263,10 +264,16 @@ void Libary::saveMembersToFile() {
     }
 
     for (const auto &m : members) {
-        m.saveToFile(writer);
+        m.saveMember(writer);
     }
 
     writer.close();
 }
 
-cout << mem
+void Book::saveBook(ofstream &writer) const {
+    writer << id << ","
+    << title << ","
+    << author << ","
+    << genre << ","
+    << endl;
+}

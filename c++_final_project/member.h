@@ -20,7 +20,7 @@ class Member{
         void returnBook(Book &book);
 
         Member(string newMemberID, string newName);
-        void saveMember(ofstream &writer);
+        void saveMember(ofstream &writer) const;
         void displayMemb() const;
 };
 #endif
