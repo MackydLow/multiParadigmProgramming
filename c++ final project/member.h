@@ -1,12 +1,10 @@
 #include <iostream>
 #include <string>
-#ifndef "book.h"
-#include "book.h"
-#include "member.h"
+#include "member.cpp"
 #include <vector>
 using namespace std;
 
-class Member {
+class Member{
     private:
         int memberID;
         string name;

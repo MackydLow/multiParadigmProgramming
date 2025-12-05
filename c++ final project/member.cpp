@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#ifndef "book.h"
 #include "book.h"
 #include "member.h"
 #include <vector>
