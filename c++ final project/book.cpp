@@ -4,7 +4,7 @@
 using namespace std;
 
 //getters
-int Book::getBookID(){
+string Book::getBookID(){
      return bookID;
 }
 
@@ -29,7 +29,7 @@ bool Book::getAvaliability(){
 }
 
 //setters
-void Book::setBookID(int newBookID) {
+void Book::setBookID(string newBookID) {
     bookID = newBookID;
 }
 
@@ -54,7 +54,7 @@ void Book::setAvaliability(bool newAvaliability) {
 }
 
 //constructer
-Book::Book(int newBookID, string newTitle, string newAuthor, string newGenre, int newPageCount, bool newAvaliability) {
+Book::Book(string newBookID, string newTitle, string newAuthor, string newGenre, int newPageCount, bool newAvaliability) {
     cout << "adding a new book" << endl;
     bookID = newBookID;
     title = newTitle;

@@ -13,8 +13,8 @@ class Book {
         int pageCount;
         bool avaliable;
     public:
-        int getBookID();
-        void setBookID(int newBookID);
+        string getBookID();
+        void setBookID(string newBookID);
 
         string getTitle();
         void setTitle(string newTitle);

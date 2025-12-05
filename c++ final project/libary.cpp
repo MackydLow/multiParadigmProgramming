@@ -8,7 +8,7 @@ using namespace std;
 class Libary {
     private:
         std::vector<Book> books;
-        //std::vector<Member> members;
+        std::vector<Member> members;
     public:
         void addBook();
         void removeBook();
@@ -18,8 +18,8 @@ class Libary {
 };
 
 void Libary::addBook() {
-    int id, pc;
-    string t, a, g;
+    int pc;
+    string t, a, g, id;
 
     cout << "Enter the new books bookID: " << endl;
     cin >> id;
@@ -38,6 +38,7 @@ void Libary::addBook() {
 
     Book newBook(id, t, a, g, pc, true);
 
+    books.[books.size()] = newBook;
 }
 
 void Libary::removeBook() {
@@ -67,7 +68,7 @@ void Libary::searchByTitle() {
 }
 
 void Libary::searchByID() {
-    int id;
+    string id;
     cout << "input book ID to search" << endl;
     cin >> id;
 
@@ -85,4 +86,40 @@ void Libary::displayAvliableBook() {
         }
     }
 }
+
+void Libary::addMember() {
+    string n, id;
+
+    cout << "Enter the Member ID: " << endl;
+    cin >> id;
+
+    cout << "Enter the name of member: " << endl;
+    cin >> n;
+
+    Member newMember(id, n);
+
+    members.[members.size()] = newMember;
+
+}
+
+void Libary::removeMember() {
+    string id;
+    cout << "Enter member ID of member to be deleted: " << endl;
+    cin >> id;
+
+    for (size_t i = 0; i < members.size(); i++) {
+        if (members[i].getMemberID() == id) {
+            cout << i << endl;
+            members.erase(members.begin() + i);
+        }
+    }
+}
+
+void Libary::displayMembers() {
+    for (size_t i = 0; i < members.size(); i++) {
+        count << members[1] << endl;
+    }
+}
+
+
 

@@ -5,7 +5,7 @@
 using namespace std;
  
 //getters
-int Member::getMemberID(){
+string Member::getMemberID(){
      return memberID;
 }
 
@@ -14,13 +14,20 @@ string Member::getName(){
 }
 
 //setters
-void Member::setMemberID(int newMemberID) {
+void Member::setMemberID(string newMemberID) {
     memberID = newMemberID;
 }
 
 void Member::setName(string newName) {
     name = newName;
 }
+
+//constructor
+Member::Member(int newMemberID, string newName) {
+    cout << "adding a new member" << endl;
+    memberID = newMemberID;
+    name = newName;
+};
 
 //functions
 void Member::borrowBook(Book &book) {

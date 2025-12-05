@@ -12,12 +12,13 @@ class Member{
         string name;
         std::vector<Book> currentBorrow;
     public:
-        int getMemberID();
+        string getMemberID();
         string getName();
-        void setMemberID(int newMemberID);
+        void setMemberID(string newMemberID);
         void setName(string newName);
         void borrowBook(Book &book);
         void returnBook(Book &book);
 
+        Member(string newMemberID, string newName)
 };
 #endif
