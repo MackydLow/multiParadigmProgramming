@@ -4,7 +4,7 @@
 #define BOOK_H
 using namespace std;
 
-class Book {
+class Book : Publication{
     private:
         string bookID;
         string title;

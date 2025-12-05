@@ -3,7 +3,7 @@
 #include "member.h"
 #include <vector>
 using namespace std;
- 
+ template <typename publication>
 //getters
 string Member::getMemberID(){
      return memberID;
@@ -30,13 +30,13 @@ Member::Member(int newMemberID, string newName) {
 };
 
 //functions
-void Member::borrowBook(Book &book) {
+void Member::borrowBook(publication* &pub) {
     currentBorrow[currentBorrow.size()] = book;
 
     book.setAvaliability(false);
 }
 
-void Member::returnBook(Book &book) {
+void Member::returnBook(publication* &pub) {
     for (size_t i = 0; i < currentBorrow.size(); i++) {
         if (currentBorrow[i].getBookID() == book.getBookID()) {
             cout << i << endl;

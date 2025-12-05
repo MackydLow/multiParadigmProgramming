@@ -10,7 +10,7 @@ using namespace std;
 
 class Libary {
     private:
-        std::vector<Book> books;
+        std::vector<Publication*> Publications;
         std::vector<Member> members;
     public:
         void addBook();
@@ -60,9 +60,9 @@ void Libary::addBook() {
     cout << "Enter the new books page count: " << endl;
     cin >> pc;
 
-    Book newBook(id, t, a, g, pc, true);
+    Publication* newPub = new Book(id, t, a, g, pc, true);
 
-    books.push_back(newBook);
+    publications.push_back(newPub);
 }
 
 void Libary::removeBook() {
@@ -153,7 +153,7 @@ void Libary::borrowBook(){
     cout << "Enter book ID of book to be borrowed: " << endl;
     cin >> bookBorID;
 
-    for (Book &b : books) {
+    for (Publication* &p : publications) {
         if (b.getBookID() == bookBorID) {
             if (b.getAvaliability() == true) {
                 cout << "Book has been borrowed" << endl;
@@ -170,7 +170,7 @@ void Libary::returnBook() {
     cout << "Enter book ID of book to be returned: " << endl;
     cin >> bookRetID;
 
-    for (Book &b : books) {
+    for (Publication* &p : publications) {
         if (b.getBookID() == bookRetID) {
              if (b.getAvaliability() == false) {
                 cout << "Book has been returned" << endl;
