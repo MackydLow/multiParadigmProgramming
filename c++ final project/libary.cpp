@@ -1,18 +1,22 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "book.h"
 #include "member.h"
 using namespace std;
 
 class Libary {
     private:
-        vector<Book> books[];
-        vector<Member> members[];
+        std::vector<Book> books;
+        std::vector<Member> members;
     public:
         void addBook();
 };
 
 void Libary::addBook() {
+    int id, pc;
+    string t, a, g;
+    
     cout << "Enter the new books bookID: ";
     cin >> id;
 
