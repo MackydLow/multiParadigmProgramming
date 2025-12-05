@@ -219,11 +219,10 @@ void Libary::loadBooks(){
     }
 
     file.close();
-    return books;
 }
 
 void Libary::loadMembers() {
-    ifstream file(members.txt)
+    ifstream file("members.txt")
 
     if (!reader) {
         cout << "Error opening input file" << endl;
@@ -246,7 +245,6 @@ void Libary::loadMembers() {
     }
 
     file.close();
-    return Members;
 }
 
 void saveBooksToFile() {
