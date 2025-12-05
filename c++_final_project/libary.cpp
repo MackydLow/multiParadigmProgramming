@@ -158,7 +158,6 @@ void Libary::borrowBook(){
             if (b.getAvaliability() == true) {
                 cout << "Book has been borrowed" << endl;
                 b.setAvaliability(false);
-                b.borrowBook();
             } else 
                 cout << "book is aleady being borrowed" << endl;
         }
@@ -175,7 +174,7 @@ void Libary::returnBook() {
         if (b.getBookID() == bookRetID) {
              if (b.getAvaliability() == false) {
                 cout << "Book has been returned" << endl;
-                b.returnBook(bookToRet);
+                b.setAvaliability(true);
         } else 
                 cout << "book is not being borrowed" << endl;
         }
@@ -188,23 +187,23 @@ void Libary::loadBooks(){
 
     if (!reader) {
         cout << "Error opening input file" << endl;
-        return 1;
+        return;
     }
 
     string line;
 
-    while (getLine(file, line)) {
+    while (getline(file, line)) {
         if (line.empty()) continue;
 
         stringstream ss(line);
 
         string id, title, author, genre, pageCount;
 
-        getLine(ss, id, ',');
-        getLine(ss, title, ',');
-        getLine(ss, author, ',');
-        getLine(ss, genre, ',');
-        getLine(ss, pageCount, ',');
+        getline(ss, id, ',');
+        getline(ss, title, ',');
+        getline(ss, author, ',');
+        getline(ss, genre, ',');
+        getline(ss, pageCount, ',');
 
         int pageNumb = stoi(pageCount);
 
@@ -215,7 +214,7 @@ void Libary::loadBooks(){
 }
 
 void Libary::loadMembers() {
-    ifstream file("members.txt")
+    ifstream file("members.txt");
 
     if (!reader) {
         cout << "Error opening input file" << endl;
@@ -224,15 +223,15 @@ void Libary::loadMembers() {
 
     string line;
 
-    while (getLine(file, line)) {
+    while (getline(file, line)) {
         if (line.empty()) continue;
 
         stringstream ss(line);
 
         string id, name;
 
-        getLine(ss, id, ',');
-        getLine(ss, name, ',');;
+        getline(ss, id, ',');
+        getline(ss, name, ',');;
 
         Member m(id, name);
     }
