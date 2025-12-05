@@ -113,27 +113,15 @@ void Libary::displayAvliableBook() {
 
 void Libary::addMember() {
     string n, id;
-    int check = 0;
     cout << "Enter the Member ID: " << endl;
     cin >> id;
-
-    for (size_t i = 0; i < books.size(); i++) {
-        if (members[i].getMemberID() == id) {
-            check += 1;
-        }
-    }
-
-    if (check > 0) {
-        cout << "Enter the Member ID: " << endl;
-        cin >> id;
-    }
 
     cout << "Enter members name: " << endl;
     cin >> n;
 
     Member newMember(id, n);
 
-    members[members.size()] = newMember;
+    members.push_back(newMember)
 
 }
 
@@ -144,15 +132,16 @@ void Libary::removeMember() {
 
     for (size_t i = 0; i < members.size(); i++) {
         if (members[i].getMemberID() == id) {
-            cout << i << endl;
             members.erase(members.begin() + i);
+            return;
         }
     }
+    cout << "Member not found re try" << endl;
 }
 
 void Libary::displayMembers() {
-    for (size_t i = 0; i < members.size(); i++) {
-        members[i].displayMemb();
+    for (const Member &newMemb : members) {
+        newMemb.displayMemb();
     }
 }
 
@@ -161,11 +150,12 @@ void Libary::borrowBook(){
     cout << "Enter book ID of book to be borrowed: " << endl;
     cin >> bookBorID;
 
-    for (size_t i = 0; i < books.size(); i++) {
-        if (books[i].getBookID() == bookBorID) {
-            if (bookToBor.getAvaliability() == true) {
+    for (Book &b : books) {
+        if (b.getBookID() == bookBorID) {
+            if (b.getAvaliability() == true) {
                 cout << "Book has been borrowed" << endl;
                 books[i].setAvaliability(false);
+                b.borrowBook();
             } else 
                 cout << "book is aleady being borrowed" << endl;
         }
@@ -178,11 +168,11 @@ void Libary::returnBook() {
     cout << "Enter book ID of book to be returned: " << endl;
     cin >> bookRetID;
 
-    for (size_t i = 0; i < books.size(); i++) {
-        if (books[i].getBookID() == bookRetID) {
-             if (bookToRet.getAvaliability() == false) {
+    for (Book &b : books) {
+        if (b.getBookID() == bookRetID) {
+             if (b.getAvaliability() == false) {
                 cout << "Book has been returned" << endl;
-                bookToRet.returnBook(bookToRet);
+                b.returnBook(bookToRet);
         } else 
                 cout << "book is not being borrowed" << endl;
         }
