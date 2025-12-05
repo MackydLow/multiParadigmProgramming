@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "book.h"
 #include "member.h"
 using namespace std;
@@ -150,12 +152,12 @@ void Libary::removeMember() {
 
 void Libary::displayMembers() {
     for (size_t i = 0; i < members.size(); i++) {
-        cout << members[i].displayMemb() << endl;
+        members[i].displayMemb();
     }
 }
 
 void Libary::borrowBook(){
-    string bookBorID
+    string bookBorID;
     cout << "Enter book ID of book to be borrowed: " << endl;
     cin >> bookBorID;
 
@@ -163,7 +165,7 @@ void Libary::borrowBook(){
         if (books[i].getBookID() == bookBorID) {
             if (bookToBor.getAvaliability() == true) {
                 cout << "Book has been borrowed" << endl;
-                books[i].setAvaliability(true)
+                books[i].setAvaliability(false);
             } else 
                 cout << "book is aleady being borrowed" << endl;
         }
@@ -178,15 +180,14 @@ void Libary::returnBook() {
 
     for (size_t i = 0; i < books.size(); i++) {
         if (books[i].getBookID() == bookRetID) {
-            Book bookToRet = books[i];
+             if (bookToRet.getAvaliability() == false) {
+                cout << "Book has been returned" << endl;
+                bookToRet.returnBook(bookToRet);
+        } else 
+                cout << "book is not being borrowed" << endl;
         }
     }
 
-    if (bookToRet.getAvaliability() == false) {
-        cout << "Book has been returned" << endl;
-        bookToRet.returnBook(bookToRet);
-    } else 
-        cout << "book is not being borrowed" << endl;
 }
 
 void Libary::loadBooks(){
