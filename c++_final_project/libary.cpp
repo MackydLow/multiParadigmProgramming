@@ -238,7 +238,7 @@ void Libary::loadMembers() {
 
         Member m(id, name);
 
-        members.push_back(m)
+        members.push_back(m);
     }
 
     file.close();
