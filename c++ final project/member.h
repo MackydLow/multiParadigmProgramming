@@ -8,7 +8,7 @@ using namespace std;
 
 class Member{
     private:
-        int memberID;
+        string memberID;
         string name;
         std::vector<Book> currentBorrow;
     public:
