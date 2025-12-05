@@ -16,10 +16,19 @@ class Libary {
         void searchByTitle();
         void searchByID();
         void displayAvliableBook();
+        void addMember();
+        void removeMember();
+        void displayMembers();
+        void borrowBook();
+        void returnBook();
+        void loadBooks();
+        void loadMembers();
+        void saveBooksToFile();
+        void saveMembersToFile();
 };
 
 void Libary::addBook() {
-    int pc, check;
+    int pc = 0, check = 0;
     string t, a, g, id;
 
     cout << "Enter the new books bookID: " << endl;
@@ -55,7 +64,7 @@ void Libary::addBook() {
 }
 
 void Libary::removeBook() {
-    int id;
+    string id;
     cout << "Enter bookID of book to be deleted: " << endl;
     cin >> id;
 
@@ -100,9 +109,9 @@ void Libary::displayAvliableBook() {
     }
 }
 
-void Member::addMember() {
+void Libary::addMember() {
     string n, id;
-    int check;
+    int check = 0;
     cout << "Enter the Member ID: " << endl;
     cin >> id;
 
@@ -122,7 +131,7 @@ void Member::addMember() {
 
     Member newMember(id, n);
 
-    members.[members.size()] = newMember;
+    members[members.size()] = newMember;
 
 }
 
@@ -146,22 +155,19 @@ void Libary::displayMembers() {
 }
 
 void Libary::borrowBook(){
-    string bookBorID;
-    Book bookToBor;
+    string bookBorID
     cout << "Enter book ID of book to be borrowed: " << endl;
     cin >> bookBorID;
 
     for (size_t i = 0; i < books.size(); i++) {
         if (books[i].getBookID() == bookBorID) {
-            bookToBor = books[i];
+            if (bookToBor.getAvaliability() == true) {
+                cout << "Book has been borrowed" << endl;
+                books[i].setAvaliability(true)
+            } else 
+                cout << "book is aleady being borrowed" << endl;
         }
     }
-
-    if (bookToBor.getAvaliability() == true) {
-        cout << "Book has been borrowed" << endl;
-        bookToBor.borrowBook(bookToBor);
-    } else 
-        cout << "book is aleady being borrowed" << endl;
 
 }
 
@@ -172,7 +178,7 @@ void Libary::returnBook() {
 
     for (size_t i = 0; i < books.size(); i++) {
         if (books[i].getBookID() == bookRetID) {
-            Book bookToRet = books[i]
+            Book bookToRet = books[i];
         }
     }
 
@@ -257,7 +263,7 @@ void saveBooksToFile() {
     writer.close();
 }
 
-void saveMembersToFile() {
+void Libary::saveMembersToFile() {
     ofstream writer("members.txt");
 
     if (!writer) {

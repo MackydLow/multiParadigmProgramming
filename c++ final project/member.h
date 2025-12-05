@@ -21,5 +21,6 @@ class Member{
 
         Member(string newMemberID, string newName);
         void saveMember(ofstream &writer);
+        void displayMemb()
 };
 #endif
