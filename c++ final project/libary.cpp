@@ -117,8 +117,45 @@ void Libary::removeMember() {
 
 void Libary::displayMembers() {
     for (size_t i = 0; i < members.size(); i++) {
-        count << members[1] << endl;
+        cout << members[i] << endl;
     }
+}
+
+void Libary::borrowBook(){
+    string bookBorID;
+    cout << "Enter book ID of book to be borrowed: " << endl;
+    cin >> bookBorID;
+
+    for (size_t i = 0; i < books.size(); i++) {
+        if (books[i].getBookID() == bookBorID) {
+            Book bookToBor = books[i]
+        }
+    }
+
+    if (bookToBor.getAvaliability() == true) {
+        cout << "Book has been borrowed" << endl;
+        bookToBor.borrowBook(bookToBor);
+    } else 
+        cout << "book is aleady being borrowed" << endl;
+
+}
+
+void Libary::returnBook() {
+    string bookRetID;
+    cout << "Enter book ID of book to be returned: " << endl;
+    cin >> bookRetID;
+
+    for (size_t i = 0; i < books.size(); i++) {
+        if (books[i].getBookID() == bookRetID) {
+            Book bookToRet = books[i]
+        }
+    }
+
+    if (bookToRet.getAvaliability() == false) {
+        cout << "Book has been returned" << endl;
+        bookToRet.returnBook(bookToRet);
+    } else 
+        cout << "book is not being borrowed" << endl;
 }
 
 
