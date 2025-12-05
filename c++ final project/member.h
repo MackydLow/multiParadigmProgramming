@@ -2,6 +2,7 @@
 #include <string>
 #include "member.cpp"
 #include <vector>
+#pragma once
 using namespace std;
 
 class Member{
