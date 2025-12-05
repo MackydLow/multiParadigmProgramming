@@ -12,6 +12,9 @@ class Libary {
     public:
         void addBook();
         void removeBook();
+        void searchByTitle();
+        void searchByID();
+        void displayAvliableBook();
 };
 
 void Libary::addBook() {
@@ -44,7 +47,7 @@ void Libary::removeBook() {
 
     for (size_t i = 0; i < books.size(); i++) {
         if (books[i].getBookID() == id) {
-            print(books.begin() + i);
+            cout << i << endl;
             books.erase(books.begin() + i);
         }
     }
@@ -53,12 +56,33 @@ void Libary::removeBook() {
 void Libary::searchByTitle() {
     string name;
     cout << "input title to search" << endl;
-    cin >> name
+    cin >> name;
 
     for (size_t i = 0; i < books.size(); i++) {
         if (books[i].getTitle() == name) {
-            cout << books[books.begin() + i].displayBookInfo << endl;
+            books[i].displayBookInfo();
         }
     }
 
 }
+
+void Libary::searchByID() {
+    int id;
+    cout << "input book ID to search" << endl;
+    cin >> id;
+
+    for (size_t i = 0; i < books.size(); i++) {
+        if (books[i].getBookID() == id) {
+            books[i].displayBookInfo();
+        }
+    }
+}
+
+void Libary::displayAvliableBook() {
+    for (size_t i = 0; i < books.size(); i++) {
+        if (books[i].getAvaliability() == true) {
+            books[i].displayBookInfo();
+        }
+    }
+}
+
