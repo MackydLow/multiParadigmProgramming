@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#ifndef "book.h"
 #include "book.h"
 //#include "member.h"
 using namespace std;
