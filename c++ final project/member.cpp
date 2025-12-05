@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include "book.cpp"
+#include "book.h"
+#include "member.h"
 using namespace std;
 
 class Member {

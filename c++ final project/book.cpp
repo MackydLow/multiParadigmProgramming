@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "book.h"
 using namespace std;
 
 class Book {

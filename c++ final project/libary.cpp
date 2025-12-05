@@ -1,17 +1,33 @@
 #include <iostream>
 #include <string>
-#include "book.cpp"
-#include "member.cpp"
+#include "book.h"
+#include "member.h"
 using namespace std;
 
 class Libary {
     private:
-        book Books[];
-        member members[]
-    
-}
+        Book books[];
+        Member members[];
+    public:
+        void addBook();
+};
 
 void Libary::addBook() {
-    book newBook;
-    
+    cout << "Enter the new books bookID: ";
+    cin >> id;
+
+    cout << "Enter the new books title: ";
+    cin >> t;
+
+    cout << "Enter the author of the new book: ";
+    cin >> a;
+
+    cout << "Enter the new books genre: ";
+    cin >> g;
+
+    cout << "Enter the new books page count: ";
+    cin >> pc;
+
+    Book newBook(id, t, a, g, pc, true);
+
 }
