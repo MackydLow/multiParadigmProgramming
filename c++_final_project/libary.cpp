@@ -62,7 +62,7 @@ void Libary::addBook() {
 
     Book newBook(id, t, a, g, pc, true);
 
-    books[books.size()] = newBook;
+    books.push_back(newBook);
 }
 
 void Libary::removeBook() {
@@ -209,6 +209,8 @@ void Libary::loadBooks(){
         int pageNumb = stoi(pageCount);
 
         Book b(id, title, author, genre, pageNumb, true);
+
+        books.push_back(b);
     }
 
     file.close();
@@ -235,12 +237,14 @@ void Libary::loadMembers() {
         getline(ss, name, ',');;
 
         Member m(id, name);
+
+        members.push_back(m)
     }
 
     file.close();
 }
 
-void saveBooksToFile() {
+void Libary::saveBooksToFile() {
     ofstream writer("books.txt");
 
     if (!writer) {
