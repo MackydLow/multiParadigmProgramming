@@ -121,7 +121,7 @@ void Libary::addMember() {
 
     Member newMember(id, n);
 
-    members.push_back(newMember)
+    members.push_back(newMember);
 
 }
 
@@ -140,6 +140,9 @@ void Libary::removeMember() {
 }
 
 void Libary::displayMembers() {
+    if (members.empty()) {
+        cout << "No members found" << endl;
+    }
     for (const Member &newMemb : members) {
         newMemb.displayMemb();
     }
@@ -154,7 +157,7 @@ void Libary::borrowBook(){
         if (b.getBookID() == bookBorID) {
             if (b.getAvaliability() == true) {
                 cout << "Book has been borrowed" << endl;
-                books[i].setAvaliability(false);
+                b.setAvaliability(false);
                 b.borrowBook();
             } else 
                 cout << "book is aleady being borrowed" << endl;

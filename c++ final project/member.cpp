@@ -43,15 +43,16 @@ void Member::returnBook(Book &book) {
             currentBorrow.erase(currentBorrow.begin() + i);
         }
     }
+}
 
-void Member::saveMember(ofstream &writer) const {
+void Member::saveMember(ofstream &writer) {
     writer << memberID << ","
     << name << ","
     << endl;
 
 }
 
-void Member::displayMemb()
+void Member::displayMemb() {
     cout << "Member ID: " << memberID << endl;
     cout << "Name: " << name << endl;
     cout << " " << endl;
