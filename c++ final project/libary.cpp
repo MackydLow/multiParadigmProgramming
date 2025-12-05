@@ -11,6 +11,7 @@ class Libary {
         //std::vector<Member> members;
     public:
         void addBook();
+        void removeBook();
 };
 
 void Libary::addBook() {
@@ -34,4 +35,16 @@ void Libary::addBook() {
 
     Book newBook(id, t, a, g, pc, true);
 
+}
+
+void Libary::removeBook() {
+    int id;
+    cout << "Enter the new books bookID: ";
+    cin >> id;
+
+    for (size_t i = 0; i < books.size(); i++) {
+        if (books[i].getBookID == id) {
+            books.erase(books.begin() + i)
+        }
+    }
 }
