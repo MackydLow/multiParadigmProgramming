@@ -6,8 +6,8 @@ using namespace std;
 
 class Libary {
     private:
-        Book books[];
-        Member members[];
+        vector<Book> books[];
+        vector<Member> members[];
     public:
         void addBook();
 };
