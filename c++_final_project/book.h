@@ -35,6 +35,6 @@ class Book {
 
         void displayBookInfo();
 
-        void saveBook(ofstream &writer);
+        void saveBook(ofstream &writer) const;
 };
 #endif

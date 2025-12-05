@@ -271,7 +271,7 @@ void Libary::saveMembersToFile() {
 }
 
 void Book::saveBook(ofstream &writer) const {
-    writer << id << ","
+    writer << bookID << ","
     << title << ","
     << author << ","
     << genre << ","
