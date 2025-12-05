@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "publication.h"
 #ifndef BOOK_H
 #define BOOK_H
 using namespace std;

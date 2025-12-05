@@ -1,5 +1,5 @@
-#ifndef BOOK_H
-#define BOOK_H
+#ifndef PUBLICATION_H
+#define PUBLICATION_H
 #include <string>
 using namespace std;
 

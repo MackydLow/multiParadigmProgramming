@@ -154,7 +154,8 @@ void Libary::borrowBook(){
     cin >> bookBorID;
 
     for (Publication* &p : publications) {
-        if (b.getBookID() == bookBorID) {
+        book* newBook = dynamic_cast<Book*>(p);
+        if (newBook && newBook->getBookID() == bookBorID) {
             if (b.getAvaliability() == true) {
                 cout << "Book has been borrowed" << endl;
                 b.setAvaliability(false);
@@ -171,7 +172,8 @@ void Libary::returnBook() {
     cin >> bookRetID;
 
     for (Publication* &p : publications) {
-        if (b.getBookID() == bookRetID) {
+        Book* retBook = dynamic_cast<Book*>(p);
+        if (retBook && retBook->getBookID() == bookRetID) {
              if (b.getAvaliability() == false) {
                 cout << "Book has been returned" << endl;
                 b.setAvaliability(true);
@@ -208,9 +210,9 @@ void Libary::loadBooks(){
 
         int pageNumb = stoi(pageCount);
 
-        Book b(id, title, author, genre, pageNumb, true);
+        Publication* newPub = new Book(id, title, author, genre, pageNumb, true);
 
-        books.push_back(b);
+        publication.push_back(b);
     }
 
     file.close();
@@ -252,8 +254,9 @@ void Libary::saveBooksToFile() {
         return;
     }
 
-    for (const auto &b : books) {
-        b.saveBook(writer);
+    for (Publication* p : Publication) {
+        Book newBook = dynamic_cast<Book*>(p):
+        if (newBook) newBook->(writer);
     }
 
     writer.close();
