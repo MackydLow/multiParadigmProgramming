@@ -29,6 +29,7 @@ class Libary {
         void saveMembersToFile();
 };
 
+//addd book
 void Libary::addBook() {
     int pc = 0, check = 0;
     string t, a, g, id;
@@ -65,6 +66,7 @@ void Libary::addBook() {
     publications.push_back(newPub);
 }
 
+//remove book
 void Libary::removeBook() {
     string id;
     cout << "Enter bookID of book to be deleted: " << endl;
@@ -78,6 +80,7 @@ void Libary::removeBook() {
     }
 }
 
+//serach for books by title
 void Libary::searchByTitle() {
     string name;
     cout << "input title to search" << endl;
@@ -91,6 +94,7 @@ void Libary::searchByTitle() {
 
 }
 
+//search for books by id
 void Libary::searchByID() {
     string id;
     cout << "input book ID to search" << endl;
@@ -103,6 +107,7 @@ void Libary::searchByID() {
     }
 }
 
+//display books that are avaliable to borrow
 void Libary::displayAvliableBook() {
     for (size_t i = 0; i < books.size(); i++) {
         if (books[i].getAvaliability() == true) {
@@ -111,6 +116,7 @@ void Libary::displayAvliableBook() {
     }
 }
 
+//add new ,ember
 void Libary::addMember() {
     string n, id;
     cout << "Enter the Member ID: " << endl;
@@ -125,6 +131,7 @@ void Libary::addMember() {
 
 }
 
+//remove member
 void Libary::removeMember() {
     string id;
     cout << "Enter member ID of member to be deleted: " << endl;
@@ -139,6 +146,7 @@ void Libary::removeMember() {
     cout << "Member not found re try" << endl;
 }
 
+//display member
 void Libary::displayMembers() {
     if (members.empty()) {
         cout << "No members found" << endl;
@@ -148,6 +156,7 @@ void Libary::displayMembers() {
     }
 }
 
+//borrow a book
 void Libary::borrowBook(){
     string bookBorID;
     cout << "Enter book ID of book to be borrowed: " << endl;
@@ -166,6 +175,7 @@ void Libary::borrowBook(){
 
 }
 
+//return a book
 void Libary::returnBook() {
     string bookRetID;
     cout << "Enter book ID of book to be returned: " << endl;
@@ -184,6 +194,7 @@ void Libary::returnBook() {
 
 }
 
+//load a book
 void Libary::loadBooks(){
 
     ifstream file("books.txt");
@@ -218,6 +229,7 @@ void Libary::loadBooks(){
     file.close();
 }
 
+//load a member from file
 void Libary::loadMembers() {
     ifstream file("members.txt");
 
@@ -246,6 +258,7 @@ void Libary::loadMembers() {
     file.close();
 }
 
+save all books to file
 void Libary::saveBooksToFile() {
     ofstream writer("books.txt");
 
@@ -262,6 +275,7 @@ void Libary::saveBooksToFile() {
     writer.close();
 }
 
+//save all memebrs ro file
 void Libary::saveMembersToFile() {
     ofstream writer("members.txt");
 
@@ -277,10 +291,30 @@ void Libary::saveMembersToFile() {
     writer.close();
 }
 
+//save books to file
 void Book::saveBook(ofstream &writer) const {
     writer << bookID << ","
     << title << ","
     << author << ","
     << genre << ","
     << endl;
+}
+
+int main () {
+
+    libary l;
+    l.addBook();
+    l.removeBook();
+    l.searchByTitle();
+    l.searchByID();
+    l.displayAvliableBook();
+    l.addMember();
+    l.removeMember();
+    l.displayMembers();
+    l.borrowBook();
+    l.returnBook();
+    l.loadBooks();
+    l.loadMembers();
+    l.saveBooksToFile();
+    l.saveMembersToFile();
 }
