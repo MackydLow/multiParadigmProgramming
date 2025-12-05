@@ -2,7 +2,8 @@
 #include <string>
 #include "member.cpp"
 #include <vector>
-#pragma once
+#ifndef MEMBER_H
+#define MEMBER_H
 using namespace std;
 
 class Member{
@@ -19,3 +20,4 @@ class Member{
         void returnBook(Book &book);
 
 };
+#endif
