@@ -2,13 +2,13 @@
 #include <string>
 #include <vector>
 #include "book.h"
-#include "member.h"
+//#include "member.h"
 using namespace std;
 
 class Libary {
     private:
         std::vector<Book> books;
-        std::vector<Member> members;
+        //std::vector<Member> members;
     public:
         void addBook();
 };
@@ -16,7 +16,7 @@ class Libary {
 void Libary::addBook() {
     int id, pc;
     string t, a, g;
-    
+
     cout << "Enter the new books bookID: ";
     cin >> id;
 

@@ -21,7 +21,7 @@ class Book {
         void setAuthor(string newAuthor);
 
         string getGenre();
-        void setGenre(int newGenre);
+        void setGenre(string newGenre);
 
         int getPageCount();
         void setPageCount(int newPageCount);
@@ -29,7 +29,7 @@ class Book {
         bool getAvaliability();
         void setAvaliability(bool newAvaliability);
 
-        Book(int newBookID, string newTitle, string newAuthor, int newGenre, int newPageCount, bool newAvaliability);
+        Book(int newBookID, string newTitle, string newAuthor, string newGenre, int newPageCount, bool newAvaliability);
 
         void displayBookInfo();
 };
