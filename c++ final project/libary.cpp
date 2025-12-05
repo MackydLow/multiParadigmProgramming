@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "book.h"
-//#include "member.h"
+#include "member.h"
 using namespace std;
 
 class Libary {

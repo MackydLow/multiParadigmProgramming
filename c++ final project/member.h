@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "member.cpp"
 #include <vector>
+#include "book.h"
 #ifndef MEMBER_H
 #define MEMBER_H
 using namespace std;
