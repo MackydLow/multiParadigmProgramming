@@ -44,6 +44,13 @@ void Member::returnBook(Book &book) {
         }
     }
 
+void Member::saveMember(ofstream &writer) const {
+    writer << memberID << ","
+    << name << ","
+    << endl;
+
+}
+
 }
 
 

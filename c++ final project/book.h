@@ -34,5 +34,7 @@ class Book {
         Book(int newBookID, string newTitle, string newAuthor, string newGenre, int newPageCount, bool newAvaliability);
 
         void displayBookInfo();
+
+        void saveBook(ofstream &writer)
 };
 #endif

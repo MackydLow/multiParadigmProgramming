@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iostream
 #include "book.h"
 #include "member.h"
 using namespace std;
@@ -181,5 +182,91 @@ void Libary::returnBook() {
         cout << "book is not being borrowed" << endl;
 }
 
+void Libary::loadBooks(){
+    ifstream reader("books.txt");
 
+    if (!reader) {
+        cout << "Error opening input file" << endl;
+        return 1;
+    }
 
+    string line;
+
+    while (getLine(file, line)) {
+        if (line.empty()) continue;
+
+        stringstream ss(line);
+
+        string id, title, author, genre, pageCount;
+
+        getLine(ss, id, ',');
+        getLine(ss, title, ',');
+        getLine(ss, author, ',');
+        getLine(ss, genre, ',');
+        getLine(ss, pageCount, ',');
+
+        int pageNumb = stoi(pageCount);
+
+        Book b(id, title, author, genre, pageNumb, true);
+    }
+
+    file.close();
+    return books;
+}
+
+void Libary::loadMembers() {
+    ifstream file(members.txt)
+
+    if (!reader) {
+        cout << "Error opening input file" << endl;
+        return 1;
+    }
+
+    string line;
+
+    while (getLine(file, line)) {
+        if (line.empty()) continue;
+
+        stringstream ss(line);
+
+        string id, name;
+
+        getLine(ss, id, ',');
+        getLine(ss, name, ',');;
+
+        Member m(id, name);
+    }
+
+    file.close();
+    return Members;
+}
+
+void saveBooksToFile() {
+    ofstream writer("books.txt");
+
+    if (!writer) {
+        cout << "Error opening file" << endl;
+        return;
+    }
+
+    for (const auto &b : books) {
+        b.saveToFile(writer);
+    }
+
+    writer.close();
+}
+
+void saveMembersToFile() {
+    ofstream writer("members.txt");
+
+    if (!writer) {
+        cout << "Error opening file" << endl;
+        return;
+    }
+
+    for (const auto &m : members) {
+        m.saveToFile(writer);
+    }
+
+    writer.close();
+}

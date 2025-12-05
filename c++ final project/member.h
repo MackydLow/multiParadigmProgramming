@@ -20,5 +20,6 @@ class Member{
         void returnBook(Book &book);
 
         Member(string newMemberID, string newName)
+        void saveMember(ofstream &writer)
 };
 #endif

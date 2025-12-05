@@ -73,3 +73,11 @@ void Book::displayBookInfo() {
     cout << "Page Count: " << pageCount << endl;
     cout << "Avaliability: " << avaliable << endl;
 }
+
+void Book::saveBook(ofstream &writer) const {
+    writer << id << ","
+    << title << ","
+    << author << ","
+    << genre << ","
+    << endl;
+}
