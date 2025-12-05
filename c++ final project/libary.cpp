@@ -18,12 +18,24 @@ class Libary {
 };
 
 void Libary::addBook() {
-    int pc;
+    int pc, check;
     string t, a, g, id;
 
     cout << "Enter the new books bookID: " << endl;
     cin >> id;
 
+    for (size_t i = 0; i < books.size(); i++) {
+        if (books[i].getBookID() == id) {
+            check += 1;
+        }
+    }
+
+    if (check > 0) {
+        cout << "id invalid re enter"
+        cout << "Enter the new books bookID: " << endl;
+        cin >> id;
+    }
+    
     cout << "Enter the new books title: " << endl;
     cin >> t;
 
@@ -93,7 +105,18 @@ void Libary::addMember() {
     cout << "Enter the Member ID: " << endl;
     cin >> id;
 
-    cout << "Enter the name of member: " << endl;
+    for (size_t i = 0; i < books.size(); i++) {
+        if (members[i].getMemberID() == id) {
+            check += 1;
+        }
+    }
+
+    if (check > 0) {
+        cout << "Enter the Member ID: " << endl;
+        cin >> id;
+    }
+
+    cout << "Enter members name: " << endl;
     cin >> n;
 
     Member newMember(id, n);
